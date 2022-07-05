@@ -1,0 +1,22 @@
+if game.PlaceId == 537413528 then
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
+local win = DiscordLib:Window("Build A Boat")
+
+--// Main
+local serv = win:Server("Main", "")
+local btns = serv:Channel("Quests")
+
+--// Player
+local serv = win:Server("Player", "")
+local sldrs = serv:Channel("Player")
+local sldr = sldrs:Slider("Walkspeed", 16, 300, 50, function(v)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+   end)
+local btns = serv:Channel("Player (other stuff)")
+btns:Button("Click Tp", function(v)
+local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+mouse.Button1Down:Connect(function(v)
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(mouse.hit.p.X, mouse.hit.p.Y, mouse.hit.p.Z)
+    end)
+  end)
+end
